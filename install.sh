@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 source ./common.sh
 
 RASPICONFIG_DIR="/etc/raspi-config"
@@ -35,7 +36,7 @@ function create_directories() {
 
     sudo mkdir -p $RASPICONFIG_DIR || install_error "Unable to create directory ${$RASPICONFIG_DIR}"
     sudo mkdir -p "$RASPICONFIG_DIR/backups"
-    
+
     sudo mkdir -p $APP_BASE_DIR || install_error "[FAILED] $APP_BASE_DIR"
 
     echo -e "done... \n"
@@ -56,14 +57,19 @@ function install_api() {
 
 function install_front_end(){
     install_log "[INSTALL] Installing the front-end service."
-    
+
     echo -e "done... \n"
 }
 
 function install_systemctl_service()
 {
     install_log "[INSTALL] Installing the SystemCTL service."
-    
+
+    sudo cp "./systemctl/raspiconfig.service" "/lib/systemctl/system/"
+
+    sudo systemctl enable raspiconfig.service
+    sudo systemctl start raspiconfig.service
+
     echo -e "done... \n"
 }
 
@@ -72,7 +78,7 @@ function change_permissions() {
     install_log "Changing directories and file permissions/ownerships"
 
     sudo chown -R $RASPICONFIG_USER:$RASPICONFIG_USER "$RASPICONFIG_DIR" || install_error "[FAILED] Change permissions on $RASPICONFIG_DIR."
-   
+
     sudo chown -R $RASPICONFIG_USER:$RASPICONFIG_USER "$APP_BASE_DIR" || install_error "[FAILED]] Change permissions on $APP_BASE_DIR."
 }
 
@@ -87,15 +93,15 @@ function install_complete() {
 function install_raspi_config() {
     display_welcome
     config_installation
-    #update_repositories
-    #install_depedencies
+    update_repositories
+    install_depedencies
     create_directories
 
     download_files
     install_front_end
     install_api
 
-    install_systemctl_service
+    #install_systemctl_service
 
     #change_permissions
 
