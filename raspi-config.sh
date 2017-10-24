@@ -15,8 +15,7 @@ function update_repositories() {
     install_log "[APT] Update repositories"
 
     sudo apt-get update > /dev/null || install_error "[APT] Failed download!"
-    PID=$!
-    loader $PID
+    loader $!
 }
 
 function install_depedencies() {
@@ -25,8 +24,7 @@ function install_depedencies() {
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - > /dev/null
 
     sudo apt-get -y install nginx git htop vim > /dev/null || install_error "[APT] Failed install"
-    PID=$!
-    loader $PID
+    loader $!
 }
 
 install_raspi_config
