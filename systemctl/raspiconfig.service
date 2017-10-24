@@ -1,0 +1,12 @@
+[Unit]
+Description=RaspiConfig service for start a api and client
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node /home/pi/server/index.js
+User=www-data
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
