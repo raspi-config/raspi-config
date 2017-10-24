@@ -32,7 +32,7 @@ function loader() {
     i=1
     sp="/-\|"
     echo -n ' '
-    while [ -d /proc/$* ]
+    while [ -d /proc/$1 ]
     do
       printf "\b${sp:i++%${#sp}:1}"
       sleep 0.1
