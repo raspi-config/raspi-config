@@ -3,7 +3,7 @@
 SCRIPT_NAME="install.sh"
 REPO="https://github.com/raspi-config/raspi-config.git"
 
-git clone --quiet $REPO /tmp/ > /dev/null
+git clone --quiet $REPO /tmp/raspi-config > /dev/null
 
 cd /tmp/raspi-config
 
