@@ -156,7 +156,7 @@ function configure_nginx(){
         sudo rm /etc/nginx/sites-available/raspiconfig
     fi
 
-    sudo cp /tmp/raspi-config/config/nginx.conf /etc/nginx/sites-available/raspiconfig
+    sudo cp /tmp/raspi-config/config/nginx/virtualhost.conf /etc/nginx/sites-available/raspiconfig
 
     if [ -f "/etc/nginx/sites-enabled/raspiconfig" ]; then
         sudo rm /etc/nginx/sites-enabled/raspiconfig
