@@ -42,7 +42,6 @@ function config_installation(){
         echo "Installation aborted."
         exit 0
     fi
-
 }
 
 function create_directories() {
@@ -54,23 +53,21 @@ function create_directories() {
     sudo mkdir -p $APP_BASE_DIR || install_error "[FAILED] $APP_BASE_DIR"
 
     done_log
-
 }
 
 function download_files() {
     install_log "[DOWNLOAD] Dowloading the project files..."
 
     sudo chown -R pi:pi "$APP_BASE_DIR" || install_error "[FAILED]] Change permissions on $APP_BASE_DIR."
-    rm -rf $API_DIR #&& rm -rf $FRONTEND_DIR
+    rm -rf $API_DIR && rm -rf $FRONTEND_DIR
 
     install_log "[API] download successful"
     git clone --quiet $API_GITHUB_REPO $API_DIR > /dev/null
     done_log
 
     install_log "[CLIENT] download successful"
-    #git clone --quiet $CLIENT_GITHUB_REPO $FRONTEND_DIR > /dev/null
+    git clone --quiet $CLIENT_GITHUB_REPO $FRONTEND_DIR > /dev/null
     done_log
-
 }
 
 function install_api() {
@@ -110,7 +107,6 @@ function install_systemctl_service()
 
     done_log
 }
-
 
 function change_permissions() {
     install_log "Changing directories and file permissions/ownerships"
@@ -158,17 +154,16 @@ function install_raspi_config() {
     display_welcome
     detect_operational_system
     config_installation
-    #update_repositories
-    #install_dependencies
+    update_repositories
+    install_dependencies
     create_directories
 
     download_files
     install_api
-    #install_front_end
+    install_front_end
 
     install_systemctl_service
     change_permissions
     configure_nginx
     install_complete
-
 }
