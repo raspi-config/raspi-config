@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source common.sh
-
 RASPICONFIG_USER="raspiconfig"
 
 RASPICONFIG_DIR="/etc/raspi-config"
