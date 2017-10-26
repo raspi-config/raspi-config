@@ -17,16 +17,16 @@ function update_repositories() {
 
     sudo apt-get update > /dev/null || install_error "[APT] Failed download!"
 
-    echo -e "done... \n"
+   done_log
 }
 
 function install_dependencies() {
     install_log "[APT] Installing dependencies..."
 
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - > /dev/null
-    sudo apt-get -y install nodejs nginx git htop vim > /dev/null || install_error "[APT] Failed install"
+    sudo apt-get -y install nodejs nginx git htop vim > /dev/null || install_error "[APT] Failed install!"
 
-    echo -e "done... \n"
+    done_log
 }
 
 install_raspi_config

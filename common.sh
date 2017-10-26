@@ -42,5 +42,5 @@ function loader() {
       sleep 0.1
     done
 
-echo -e "\ndone..."
+    done_log
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 source ./common.sh
 
-RASPICONFIG_USER="www-data"
+RASPICONFIG_USER="raspiconfig"
 
 RASPICONFIG_DIR="/etc/raspi-config"
 
@@ -108,6 +108,14 @@ function install_systemctl_service()
     done_log
 }
 
+function create_and_configure_user()
+{
+    install_log "[USER] Adding the raspiconfig user"
+
+    sudo useradd -r -s /bin/false raspiconfig
+
+    done_log
+}
 function change_permissions() {
     install_log "Changing directories and file permissions/ownerships"
 
