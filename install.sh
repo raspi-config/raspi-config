@@ -106,3 +106,4 @@ function install_raspi_config() {
     #change_permissions
 
 }
+#teste
