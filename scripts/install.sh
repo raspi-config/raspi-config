@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-source ./common.sh
+
+source common.sh
 
 RASPICONFIG_USER="raspiconfig"
 
@@ -42,6 +43,23 @@ function config_installation(){
         echo "Installation aborted."
         exit 0
     fi
+}
+
+function update_repositories() {
+    install_log "[APT] Updating repositories..."
+
+    sudo apt-get update > /dev/null || install_error "[APT] Failed download!"
+
+   done_log
+}
+
+function install_dependencies() {
+    install_log "[APT] Installing dependencies..."
+
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - > /dev/null
+    sudo apt-get -y install nodejs nginx git htop vim > /dev/null || install_error "[APT] Failed install!"
+
+    done_log
 }
 
 function create_directories() {
@@ -168,7 +186,7 @@ function install_raspi_config() {
 
     download_files
     install_api
-    install_front_end
+    #install_front_end
 
     install_systemctl_service
     change_permissions

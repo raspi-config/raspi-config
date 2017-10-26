@@ -8,4 +8,4 @@ SSH="$USER@$IP"
 
 ssh $SSH "sudo rm -rf $DIR/*"
 scp -r . "$SSH:$DIR"
-ssh $SSH "chmod +x $DIR/*.sh"
+ssh $SSH "chmod +x $DIR/*/*.sh"
