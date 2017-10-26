@@ -4,7 +4,7 @@ RASPICONFIG_USER="raspiconfig"
 
 RASPICONFIG_DIR="/etc/raspi-config"
 
-APP_BASE_DIR="/home/pi/raspi-config"
+APP_BASE_DIR="/raspi-config"
 API_DIR="$APP_BASE_DIR/node-api"
 FRONTEND_DIR="$APP_BASE_DIR/vue-client"
 
@@ -134,6 +134,8 @@ function create_and_configure_user()
 }
 function change_permissions() {
     install_log "Changing directories and file permissions/ownerships"
+
+    sudo chmod 777 -R $APP_BASE_DIR || install_error "[FAILED] Change permissions on $APP_BASE_DIR."
 
     sudo chown -R $RASPICONFIG_USER:$RASPICONFIG_USER "$RASPICONFIG_DIR" || install_error "[FAILED] Change permissions on $RASPICONFIG_DIR."
     sudo chown -R $RASPICONFIG_USER:$RASPICONFIG_USER "$APP_BASE_DIR" || install_error "[FAILED]] Change permissions on $APP_BASE_DIR."

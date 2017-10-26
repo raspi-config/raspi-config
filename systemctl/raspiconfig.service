@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/node /home/pi/raspi-config/node-api/bin/www
+ExecStart=/usr/bin/node /raspi-config/node-api/bin/www
 User=raspiconfig
 Restart=always
 
