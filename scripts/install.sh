@@ -99,11 +99,11 @@ function install_api() {
 function install_front_end(){
     install_log "[INSTALL] Installing the front-end service."
 
-    cd $FRONTEND_DIR
-    install_log "installing project dependencies..."
-    npm install > /dev/null
-    install_log "building the front-end application"
-    npm run build > /dev/null
+    #cd $FRONTEND_DIR
+    #install_log "installing project dependencies..."
+    #npm install > /dev/null
+    #install_log "building the front-end application"
+    #npm run build > /dev/null
 
     done_log
 }
@@ -184,7 +184,7 @@ function install_raspi_config() {
 
     download_files
     install_api
-    #install_front_end
+    install_front_end
 
     install_systemctl_service
     change_permissions
