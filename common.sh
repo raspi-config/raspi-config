@@ -3,13 +3,17 @@
 function install_log() {
     DATE=$(date +"%d/%m/%y %H:%M")
 
-    echo -e "\033[1;32m[$DATE]: $*\033[m"
+    echo -e "\033[1;32m$DATE - $*\033[m"
 }
 
 # Outputs a RaspAP Install Error log line and exits with status code 1
 function install_error() {
-    echo -e "\033[1;37;41mRaspAP ERROR: $*\033[m"
+    echo -e "\033[1;37;41m[ERROR] : $*\033[m"
     exit 1
+}
+
+function done_log(){
+  echo -e "done... \n"
 }
 
 # Outputs a welcome message

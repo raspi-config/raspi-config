@@ -1,30 +1,32 @@
 #!/usr/bin/env bash
-source ./common.sh
 
 SCRIPT_NAME="install.sh"
-SCRIPT_URL="https://raw.githubusercontent.com/raspi-config/raspi-config/master/$SCRIPT_NAME"
+REPO="https://github.com/raspi-config/raspi-config.git"
 
-TMP_FILE="/tmp/$SCRIPT_NAME"
+git clone --quiet $REPO /tmp/ > /dev/null
 
-# wget -q $SCRIPT_URL -O $TMP_FILE
-cp $SCRIPT_NAME $TMP_FILE
+cd /tmp/raspi-config
 
-source $TMP_FILE && rm -f $TMP_FILE
+source ./common.sh
+source ./install.sh
+
+cd
 
 function update_repositories() {
-    install_log "[APT] Update repositories"
+    install_log "[APT] Updating repositories..."
 
     sudo apt-get update > /dev/null || install_error "[APT] Failed download!"
-    loader $!
+
+    echo -e "done... \n"
 }
 
-function install_depedencies() {
-    install_log "[APT] Installing depedencies"
+function install_dependencies() {
+    install_log "[APT] Installing dependencies..."
 
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - > /dev/null
+    sudo apt-get -y install nodejs nginx git htop vim > /dev/null || install_error "[APT] Failed install"
 
-    sudo apt-get -y install nginx git htop vim > /dev/null || install_error "[APT] Failed install"
-    loader $!
+    echo -e "done... \n"
 }
 
 install_raspi_config
