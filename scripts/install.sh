@@ -5,6 +5,7 @@ RASPICONFIG_USER="raspiconfig"
 RASPICONFIG_DIR="/etc/raspi-config"
 
 APP_BASE_DIR="/raspi-config"
+BASE_BKP_DIR="$APP_BASE_DIR/backups"
 API_DIR="$APP_BASE_DIR/node-api"
 FRONTEND_DIR="$APP_BASE_DIR/vue-client"
 
@@ -67,6 +68,8 @@ function create_directories() {
     sudo mkdir -p "$RASPICONFIG_DIR/backups"
 
     sudo mkdir -p $APP_BASE_DIR || install_error "[FAILED] $APP_BASE_DIR"
+
+    sudo mkdir -p $BASE_BKP_DIR || install_error "[FAILED] $BASE_BKP_DIR"
 
     done_log
 }
