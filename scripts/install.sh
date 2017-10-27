@@ -189,6 +189,7 @@ function install_raspi_config() {
     install_front_end
 
     install_systemctl_service
+    create_and_configure_user
     change_permissions
     configure_nginx
     install_complete
