@@ -56,7 +56,7 @@ function install_dependencies() {
     install_log "[APT] Installing dependencies..."
 
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - > /dev/null
-    sudo apt-get -y install nodejs nginx git htop vim > /dev/null || install_error "[APT] Failed install!"
+    sudo apt-get -yq install nodejs nginx git htop vim > /dev/null || install_error "[APT] Failed install!"
 
     done_log
 }
