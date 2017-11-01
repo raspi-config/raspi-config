@@ -131,8 +131,8 @@ function create_network_file()
 {
     install_log "[NETWORK] Copying the network file"
 
-    sudo cp $APP_BASE_DIR/raspi-config/config/interfaces/interfaces /etc/network/interfaces.d/interfaces
-
+    sudo cp /tmp/raspi-config/config/interfaces/interfaces /etc/network/interfaces.d/interfaces
+    sudo systemctl restart networking
     done_log
 }
 
