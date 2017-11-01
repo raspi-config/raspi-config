@@ -132,7 +132,10 @@ function create_network_file()
     install_log "[NETWORK] Copying the network file"
 
     sudo cp /tmp/raspi-config/config/interfaces/interfaces /etc/network/interfaces.d/interfaces
+
     sudo systemctl restart networking
+    sudo ifdown wlan0
+    sudo ifup wlan0
 
     done_log
 }
