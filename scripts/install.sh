@@ -49,7 +49,7 @@ function update_repositories() {
 
     sudo apt-get update > /dev/null || install_error "[APT] Failed download!"
 
-   done_log
+    done_log
 }
 
 function install_dependencies() {
@@ -133,6 +133,7 @@ function create_network_file()
 
     sudo cp /tmp/raspi-config/config/interfaces/interfaces /etc/network/interfaces.d/interfaces
     sudo systemctl restart networking
+
     done_log
 }
 
