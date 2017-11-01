@@ -127,6 +127,15 @@ function install_systemctl_service()
     done_log
 }
 
+function create_network_file()
+{
+    install_log "[NETWORK] Copying the network file"
+
+    sudo cp $APP_BASE_DIR/raspi-config/config/interfaces/interfaces /etc/network/interfaces.d/interfaces
+
+    done_log
+}
+
 function create_and_configure_user()
 {
     install_log "[USER] Adding the raspiconfig user"
@@ -192,6 +201,7 @@ function install_raspi_config() {
     install_front_end
 
     install_systemctl_service
+    create_network_file
     create_and_configure_user
     change_permissions
     configure_nginx
